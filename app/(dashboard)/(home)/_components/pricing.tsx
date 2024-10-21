@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { handleSubscribe } from "../../action";
 
 const priceId = process.env.NEXT_PUBLIC_PRICE_ID;
+const yearlyPriceId = process.env.NEXT_PUBLIC_YEARLY_PRICE_ID;
 
 export const Pricing = () => {
   return (
@@ -118,7 +119,23 @@ export const Pricing = () => {
                     Get access
                   </Button>
                 </form>
-
+                <p className="mt-6 flex items-baseline justify-center gap-x-2">
+                  <span className="text-5xl font-bold tracking-tight text-gray-900">
+                    $96/year
+                  </span>
+                  <span className="text-sm font-semibold leading-6 tracking-wide text-gray-600">
+                    EURO
+                  </span>
+                </p>
+                <p className="text-sm font-semibold leading-6 tracking-wide text-gray-600 line-through">
+                  $120/year
+                </p>
+                <form action={handleSubscribe}>
+                  <input hidden value={yearlyPriceId} name="price" />
+                  <Button className="w-full mt-4" type="submit">
+                    Get yearly access
+                  </Button>
+                </form>
                 <p className="mt-6 text-xs leading-5 text-gray-600">
                   Invoices and receipts available for easy company reimbursement
                 </p>

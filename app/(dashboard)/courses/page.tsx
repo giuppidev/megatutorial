@@ -5,6 +5,7 @@ import { CoursesList } from "./_components/courses-list";
 
 const LESSON_MAX_LIMIT = 1000;
 const priceId = process.env.NEXT_PUBLIC_PRICE_ID;
+const yearlyPriceId = process.env.NEXT_PUBLIC_YEARLY_PRICE_ID;
 
 export default async function CoursesPage() {
   const supabaseClient = createClient();
@@ -41,12 +42,20 @@ export default async function CoursesPage() {
       <h1 className="text-4xl font-bold pb-8">Le mie videolezioni 🔥</h1>
       <CoursesList lessons={data} />
       {!hasActiveSub && (
-        <form action={handleSubscribe}>
-          <input hidden value={priceId} name="price" />
-          <Button className="w-full mt-4" type="submit">
-            Get access
-          </Button>
-        </form>
+        <>
+          <form action={handleSubscribe}>
+            <input hidden value={priceId} name="price" />
+            <Button className="w-full mt-4" type="submit">
+              Get access for $10/month
+            </Button>
+          </form>
+          <form action={handleSubscribe}>
+            <input hidden value={yearlyPriceId} name="price" />
+            <Button className="w-full mt-4" type="submit">
+              Get access for $96/year
+            </Button>
+          </form>
+        </>
       )}
     </div>
   );
